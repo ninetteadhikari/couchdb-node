@@ -1,0 +1,16 @@
+<h3>Add Customer</h3>
+
+<h3>Customers</h3>
+<ul>
+  <% customers.forEach((customer)=>{%>
+  <li>
+    <h4><%= customer.value.name %></h4>
+    <%= customer.value.email %>
+    <ul>
+      <li><%= customer.value.address.street %></li>
+      <li><%= customer.value.address.city %></li>
+      <li><%= customer.value.address.state %></li>
+    </ul>
+  </li>
+  <%}); %>
+</ul>
