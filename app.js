@@ -58,13 +58,15 @@ app.post('/customer/add', function(req, res) {
 app.post('/customer/delete/:id', function(req, res) {
   const id = req.params.id;
   const rev = req.body.rev;
+  console.log('del id', id)
+  console.log('del rev', req.body)
   couch
     .del(dbName, id, rev)
     .then((data, headers, status) => {
       res.redirect('/');
     })
     .catch(err => {
-      res.send(err);
+      res.send(err)
     });
 });
 
