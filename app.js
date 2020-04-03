@@ -35,6 +35,26 @@ app.get('/', function(req, res) {
     .catch(err => res.send(err));
 });
 
+app.post('/customer/add', function(req, res) {
+  const name = req.body.name;
+  const email = req.body.email;
+  couch.uniqid().then(ids => {
+    const id = ids[0];
+    couch
+      .insert(dbName, {
+        _id: id,
+        name: name,
+        email: email
+      })
+      .then((data, header, status) => {
+        res.redirect('/');
+      })
+      .catch(err => {
+        res.send(err);
+      });
+  });
+});
+
 app.listen(3000, function() {
   console.log('Server Started On Port 3000');
 });
