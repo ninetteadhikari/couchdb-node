@@ -55,6 +55,19 @@ app.post('/customer/add', function(req, res) {
   });
 });
 
+app.post('/customer/delete/:id', function(req, res) {
+  const id = req.params.id;
+  const rev = req.body.rev;
+  couch
+    .del(dbName, id, rev)
+    .then((data, headers, status) => {
+      res.redirect('/');
+    })
+    .catch(err => {
+      res.send(err);
+    });
+});
+
 app.listen(3000, function() {
   console.log('Server Started On Port 3000');
 });
